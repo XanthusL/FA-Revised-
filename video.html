@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GreenLens Video Showcase</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html" aria-label="GreenLens home">
+        <img class="brand-mark" src="assets/logo.png" alt="GreenLens logo">
+        <span class="brand-text">GreenLens</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#how-it-works">How It Works</a>
+        <a href="index.html#demo">Demo</a>
+        <a href="index.html#cta">Try It</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section video-section">
+      <div class="container video-layout">
+        <div class="section-heading">
+          <p class="eyebrow">Video showcase</p>
+          <h1>Showcase your GreenLens video</h1>
+          <p>Drop your video file into the assets folder and it will play here as a proper showcase page.</p>
+        </div>
+
+        <div class="card video-card">
+          <video class="video-player" controls poster="assets/demo-screenshot.png">
+            <source src="assets/greenlens-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="caption">Replace assets/greenlens-video.mp4 with your own video file.</p>
+        </div>
+
+        <div class="video-actions">
+          <a class="button button-primary" href="index.html">Back to home</a>
+          <a class="button button-secondary" href="https://t.me/GreenLensBot" target="_blank" rel="noopener noreferrer">Open Telegram bot</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

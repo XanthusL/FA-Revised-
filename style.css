@@ -269,6 +269,36 @@ img {
   min-height: 24rem;
 }
 
+.video-section {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: center;
+}
+
+.video-layout {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.video-card {
+  padding: 1rem;
+}
+
+.video-player {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 8px);
+  background: #000;
+}
+
+.video-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
 .placeholder-caption {
   margin-top: 0.9rem;
   color: var(--text-muted);
