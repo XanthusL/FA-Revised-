@@ -1,0 +1,1176 @@
+{
+  "name": "GreenLens",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1216,
+        368
+      ],
+      "id": "7551797c-8483-42a2-93c5-d69f661ed876",
+      "name": "Telegram Trigger1",
+      "webhookId": "63730e4f-1fe6-478a-9cd6-396d1f6a0a71",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f78038a6-5343-4820-b09d-5d41a2f2eb97",
+              "leftValue": "={{ $json.message.photo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -992,
+        368
+      ],
+      "id": "64cba25a-1668-4f37-ada9-d16d0b002538",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "=🎫 SORTING TICKET\n{{ $json.output.item_name }} \nMaterial:{{ $json.output.material_type }}\nBin:{{ $json.output.bin_category }}  \nPrep: {{ $json.output.prep_steps }}  \n💡 {{ $json.output.tip }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -48,
+        272
+      ],
+      "id": "935775a3-505a-4c95-9f8a-a201143065de",
+      "name": "Send a text message2",
+      "webhookId": "a9f8c1da-7381-4682-ad56-de7a1e8bd889",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y",
+          "mode": "list",
+          "cachedResultName": "GreenLens' Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chat_id": "={{ $('Telegram Trigger1').item.json.message.chat }}",
+            "item_name": "={{ $('AI Agent1').item.json.output.item_name }}",
+            "material_type": "={{ $('AI Agent1').item.json.output.material_type }}",
+            "bin_category": "={{ $('AI Agent1').item.json.output.bin_category }}",
+            "photo": "={{ $('Telegram Trigger1').item.json.message.photo[0] }}",
+            "timestamp": "={{ $now.toFormat('yyyy-MM-dd HH:mm:ss') }}",
+            "prep": "={{ $('AI Agent1').item.json.output.prep_steps }}",
+            "tips": "={{ $('AI Agent1').item.json.output.tip }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "item_name",
+              "displayName": "item_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "material_type",
+              "displayName": "material_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bin_category",
+              "displayName": "bin_category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "photo",
+              "displayName": "photo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prep",
+              "displayName": "prep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tips",
+              "displayName": "tips",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        240,
+        272
+      ],
+      "id": "bac32b9a-e30b-457e-849b-37fcceeba1cd",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "LSYYPsQlAIuHbRzP",
+          "name": "Google Sheets - n8n module(LQXX)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.content ? $json.content.parts[0].text : $json.message.text }}{{ $('Telegram Trigger1').item.json.message.caption }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are GreenLens, a friendly recycling assistant for young Singaporeans. Users have just had an item identified from a photo (e.g. plastic bottle, e-waste, etc.) and may now ask follow-up questions about how to dispose of it correctly.\nBefore answering any disposal question, always query the connected knowledge base tool first — even if you believe you already know the answer. Base your response strictly on what the tool returns.\nIf the tool returns nothing relevant, or you're still unsure after checking, say so honestly rather than guessing, and suggest checking the NEA website or contacting NEA directly.\nKeep answers short, clear, and conversational — this is a Telegram chat, not a formal document.\nDo not discuss anything unrelated to recycling, waste disposal, or sustainability in Singapore."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -432,
+        272
+      ],
+      "id": "dc0a36aa-8257-4176-8fbf-ab93712d7a0a",
+      "name": "AI Agent1",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger1').item.json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        1200,
+        320
+      ],
+      "id": "98010a3b-e841-4660-a1dc-da9e1d8e98ae",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"item_name\": {\n      \"type\": \"string\",\n      \"description\": \"The name of the item identified in the photo\"\n    },\n    \"material_type\": {\n      \"type\": \"string\",\n      \"description\": \"The material the item is made of, e.g. PET plastic, aluminium, e-waste\"\n    },\n    \"bin_category\": {\n      \"type\": \"string\",\n      \"description\": \"Which bin or disposal category it belongs to, e.g. recycling, general waste, e-waste, bulky item\"\n    },\n    \"prep_steps\": {\n      \"type\": \"string\",\n      \"description\": \"Any preparation needed before disposal, e.g. rinse, remove cap, dry\"\n    },\n    \"tip\": {\n      \"type\": \"string\",\n      \"description\": \"A short helpful tip for the user about disposing of this item\"\n    }\n  },\n  \"required\": [\"item_name\", \"material_type\", \"bin_category\", \"prep_steps\", \"tip\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -256,
+        496
+      ],
+      "id": "fc5f7e0e-e35a-469c-8efb-356a2fd83b7a",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "text": "Identify the item in this image and its material type. Then determine how it should be disposed of according to Singapore NEA recycling and e-waste guidelines.\n\nRespond ONLY with valid JSON in this exact format, no markdown, no extra text:\n{\n  \"item_name\": \"string\",\n  \"material_type\": \"string\",\n  \"bin_category\": \"string (e.g. recycling, general waste, e-waste, bulky item)\",\n  \"prep_steps\": \"string (e.g. rinse and remove cap)\",\n  \"tip\": \"string (a short helpful tip for the user)\"\n}",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -768,
+        272
+      ],
+      "id": "c004e889-ec2c-4e27-8098-3f74f27d5163",
+      "name": "Analyze an image1",
+      "retryOnFail": true,
+      "executeOnce": true,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JdEg3p2xn7qk1V1q",
+          "name": "Google Gemini(PaLM) Api LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Use this tool to look up official NEA disposal guidelines for a specific item when you need bin category, prep steps, or disposal instructions not already covered in your instructions.",
+        "memoryKey": {
+          "__rl": true,
+          "value": "nea_guildance",
+          "mode": "list",
+          "cachedResultName": "nea_guildance"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        -544,
+        496
+      ],
+      "id": "44b50744-d79a-4f26-8cdd-bd3c7e238eba",
+      "name": "Simple Vector Store1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        704
+      ],
+      "id": "989c983f-72ff-43ad-b81d-a494a114e5ec",
+      "name": "Embeddings Google Gemini1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JdEg3p2xn7qk1V1q",
+          "name": "Google Gemini(PaLM) Api LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "No image. Please upload an image ",
+        "additionalFields": {
+          "reply_to_message_id": 0
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -768,
+        464
+      ],
+      "id": "d0728809-b463-43a5-89c3-8fbc9e2bb99f",
+      "name": "Send a text message",
+      "webhookId": "8b2675c5-f9fe-403a-886b-ae96dd9f3ae9",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      },
+      "notes": "no image"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "message": "Got more questions about this item? Tap below and I'll help.",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Yes, i want to clarify",
+            "disapproveLabel": "❌ Nope, I'm ok"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 30,
+              "resumeUnit": "minutes"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        528,
+        192
+      ],
+      "id": "dc26c6e6-4166-453a-bddf-733796df6e88",
+      "name": "Send message and wait for response",
+      "webhookId": "00457635-d8ca-4bfc-92ab-7197105cc124",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1216,
+        -128
+      ],
+      "id": "afd67796-f513-4418-9293-6d17d838c7fc",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6cb7da55-4ba1-4ecc-aac9-8e217ee0c5f9",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "=true {{ $json.data.approved }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        752,
+        192
+      ],
+      "id": "6045b75c-ba87-49bc-8088-fa5669880618",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "message": "What you want to clarify?",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        96
+      ],
+      "id": "7996c5ee-9187-4a7f-92ab-c2a9f3c876db",
+      "name": "Send message and wait for response1",
+      "webhookId": "cdc26a02-fb34-4b62-90ac-2eff81e69fc0",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "Thanks for using GreenLens",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        288
+      ],
+      "id": "8ce101b3-833a-4bbe-8af0-f01d38ce4aa4",
+      "name": "Send a text message1",
+      "webhookId": "40793eec-516b-4da3-83a6-5ca738570fbe",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1232,
+        96
+      ],
+      "id": "f588d6af-6612-4602-825c-e86d23980c77",
+      "name": "AI Agent",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger1').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1696,
+        272
+      ],
+      "id": "7fed5f0e-4ada-4df8-b494-da44261b6bdd",
+      "name": "Send a text message3",
+      "webhookId": "2d66df32-3c88-4f96-9936-0a4d8da3c5c2",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Use this tool to look up official NEA disposal guidelines for a specific item when you need bin category, prep steps, or disposal instructions not already covered in your instructions.",
+        "memoryKey": {
+          "__rl": true,
+          "value": "nea_guildance",
+          "mode": "list",
+          "cachedResultName": "nea_guildance"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        1328,
+        320
+      ],
+      "id": "821d31be-98b2-4b94-ba61-6dba0bc299e2",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        528
+      ],
+      "id": "9e3ddbec-af38-41d8-b8a5-b13d3dc0ab10",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JdEg3p2xn7qk1V1q",
+          "name": "Google Gemini(PaLM) Api LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        944
+      ],
+      "id": "74d2fd81-c6cf-4079-a6b5-eee5cc81d261",
+      "name": "When clicking ‘Execute workflow’",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "value": "nea_guildance",
+          "mode": "list",
+          "cachedResultName": "nea_guildance"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        -704,
+        1104
+      ],
+      "id": "c89f3238-cfdf-45b8-a519-6c7be80dd294",
+      "name": "Simple Vector Store2",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        -592,
+        1376
+      ],
+      "id": "a10870bb-ab56-4817-ba56-b2d05630d442",
+      "name": "Default Data Loader",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        1280
+      ],
+      "id": "d2da88aa-1861-4f76-8e46-c05e761c0cb7",
+      "name": "Embeddings Google Gemini2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JdEg3p2xn7qk1V1q",
+          "name": "Google Gemini(PaLM) Api LQXX"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = [\n  {material: \"Paper\", item: \"Printed paper, writing paper, newspaper, flyer, brochure, magazine, telephone directory, envelope, red packet, namecard, calendar, greeting card, gift wrapping paper, shredded paper, paper receipt\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Paper\", item: \"Books, textbooks\", recyclable: true, note: \"Donate if it can be reused\"},\n  {material: \"Paper\", item: \"Carton box, cardboard box, paper packaging, printed paper box, paper box\", recyclable: true, note: \"Please flatten before recycling\"},\n  {material: \"Paper\", item: \"Egg trays (paper)\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Paper\", item: \"Beverage carton (milk carton, drink packet, juice packet)\", recyclable: true, note: \"Please empty, rinse and flatten before recycling\"},\n  {material: \"Paper\", item: \"Paper towel tube, toilet roll tube\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Paper\", item: \"Tissue box\", recyclable: true, note: \"Please flatten before recycling\"},\n  {material: \"Paper\", item: \"Paper bag\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Paper\", item: \"Paper cup, paper plate, glitter paper, crayon drawing (paper disposables)\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Tissue paper\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Paper towel\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Toilet paper\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Disposable wooden chopsticks, pizza boxes (soiled)\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Wax paper\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Paper\", item: \"Paper packaging contaminated with food\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic (F&B)\", item: \"Plastic bottle, plastic container - mineral water, soft drink, carbonated drink, milk, water, medicine bottle\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Plastic (Non-food)\", item: \"Shampoo, bodywash, facial cleanser, detergent, soap bottle\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Plastic\", item: \"Plastic bag, toilet paper packaging, tissue box packaging\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Plastic\", item: \"Plastic film, magazine wrapper, plastic packaging for packet drink, bubble wrap, fruit box, ziplock bag\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Plastic\", item: \"Plastic packaging, bread bag, egg trays (plastic)\", recyclable: true, note: \"Please empty contents before recycling\"},\n  {material: \"Plastic\", item: \"Plastic clothes hanger\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Plastic\", item: \"Plastic takeaway food container, plastic cups, bubble tea cups\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Plastic\", item: \"CD, DVD, CD/DVD casing\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Polystyrene foam product, styrofoam, styrofoam cup, styrofoam clamshell container\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Plastic disposables, plastic cutlery, plastic crockery\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Plastic packaging with foil, potato chip bags, empty blister pack, expired credit cards\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Oxo-degradable bag, bio-degradable bag\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Drinking straw\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Cassette, video tape\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Plastic packaging contaminated with food or oil stains\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Plastic\", item: \"Melamine products, melamine cups, melamine plates\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Glass\", item: \"Beverage glass bottle - beer, wine, liquor bottle\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Glass\", item: \"Food glass bottle - sauce, condiment, jam spread bottle, food jars\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Glass\", item: \"Cosmetic glass bottle, perfume glass bottle\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Glass\", item: \"Medicine glass bottle, supplement glass bottle\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Glass\", item: \"Glassware - glass cup, glass plate, drinking glass, wine glass\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Glass\", item: \"Borosilicate glassware, pyrex glassware, bakeware, tempered glass, oven-safe food containers, crystal glass, glass with metal wires\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Glass\", item: \"Windows (glass)\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Glass\", item: \"Mirrors\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Glass\", item: \"Ceramic product - ceramic plate, tea pot, porcelain\", recyclable: false, note: \"Donate if it can be reused; otherwise dispose as general waste\"},\n  {material: \"Glass\", item: \"Light bulb - lamp, tube, incandescent, fluorescent, LED\", recyclable: false, note: \"Can be recycled at e-waste collection points, not the blue bin\"},\n  {material: \"Metal\", item: \"Beverage metal can - carbonated drink, soft drink, beer can\", recyclable: true, note: \"Please empty and rinse when necessary. Rusted metals should be disposed as general waste\"},\n  {material: \"Metal\", item: \"Food metal can - biscuit tin, food tin, metal container\", recyclable: true, note: \"Please empty and rinse when necessary. Rusted metals should be disposed as general waste\"},\n  {material: \"Metal\", item: \"Medals\", recyclable: true, note: \"Make sure it is clean before recycling\"},\n  {material: \"Metal\", item: \"Metal bottle cap\", recyclable: true, note: \"Rusted metals should be disposed as general waste\"},\n  {material: \"Metal\", item: \"Aerosol can\", recyclable: true, note: \"Please empty contents before recycling\"},\n  {material: \"Metal\", item: \"Clean aluminium tray, clean aluminium foil\", recyclable: true, note: \"Please empty and rinse before recycling\"},\n  {material: \"Metal\", item: \"Non-food metal container - paint container, paint cans\", recyclable: true, note: \"Please empty contents before recycling. Rusted metals should be disposed as general waste\"},\n  {material: \"Metal\", item: \"Rusty metal cans, dirty aluminium foil, dirty aluminium tray\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Metal\", item: \"Metal cutlery, steel wool, metal accessories\", recyclable: true, note: \"Make sure that they are completely metal\"},\n  {material: \"E-waste/Others\", item: \"ICT equipment - desktop computer, laptop, tablet, mobile phone, computer battery, mobile phone battery, printer, modem, router, monitor, docking station, hard disk drive, battery charger, portable charger, power bank, electronic cables, computer mouse, keyboard\", recyclable: false, note: \"Can be recycled at e-waste collection points, not the blue bin\"},\n  {material: \"E-waste/Others\", item: \"Electronic waste (e.g. used mobile phone, tablet, laptop)\", recyclable: false, note: \"Can be recycled at e-waste collection points\"},\n  {material: \"E-waste/Others\", item: \"Rechargeable battery\", recyclable: false, note: \"Can be recycled at e-waste collection points\"},\n  {material: \"E-waste/Others\", item: \"Household battery, alkaline battery\", recyclable: false, note: \"Can be recycled at e-waste collection points\"},\n  {material: \"E-waste/Others\", item: \"Refrigerator, washing machine, dryer, television, air conditioner (large appliances)\", recyclable: false, note: \"Recycled through retailer 1-for-1 take-back, bulky item removal by Town Council, e-waste collection drive, or doorstep collection (fees may apply)\"},\n  {material: \"E-waste/Others\", item: \"Electric mobility devices - personal mobility devices, electric scooter, electric bicycle, power-assisted bicycle\", recyclable: false, note: \"Recycle through retailer take-back or Town Council bulky item removal\"},\n  {material: \"E-waste/Others\", item: \"Rice cooker, microwave oven, toaster oven, electric kettle, food processor, food blender, electric fan, standing fan, CD/DVD player, music player, speaker, audio sound system, radio, vacuum cleaner, gaming console (small appliances)\", recyclable: false, note: \"Recycle through e-waste bins (non-ALBA, must fit bin opening), retailer take-back, bulky item removal, or Cash-for-Trash stations\"},\n  {material: \"E-waste/Others\", item: \"Lamp stand, lamp fixture\", recyclable: false, note: \"Bulb can go in e-waste bin; fixture and stand should be recycled via retailer take-back, bulky item removal, or doorstep collection\"},\n  {material: \"Others\", item: \"Sports shoes, school shoes, football shoes without metal studs\", recyclable: false, note: \"Repair or donate if possible. Part of permanent used shoe collection drive at ActiveSG, Decathlon, selected public parks and recreation clubs\"},\n  {material: \"Others\", item: \"Clothes, shoes, bags, toys, umbrellas, spectacles, textiles, curtains, bedsheets, blankets\", recyclable: false, note: \"Old items should be donated if in good condition\"},\n  {material: \"Others\", item: \"Plant waste, horticultural waste\", recyclable: false, note: \"Only for landed estates - bag and place outside your unit on collection days\"},\n  {material: \"Others\", item: \"Luggage bag\", recyclable: false, note: \"Donate if it is in good condition\"},\n  {material: \"Others\", item: \"Bulky waste, furniture\", recyclable: false, note: \"Donate if in good condition, or contact Town Council to remove from your residential premises\"},\n  {material: \"Others\", item: \"Food waste\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Others\", item: \"Leftover medicine\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Others\", item: \"Diaper, sanitary pad\", recyclable: false, note: \"Dispose as general waste\"},\n  {material: \"Others\", item: \"Stationery, pen, pencil\", recyclable: false, note: \"Donate if in good condition\"}\n];\n\nreturn items.map(entry => ({\n  json: {\n    pageContent: `Item: ${entry.item}. Material: ${entry.material}. ${entry.recyclable ? \"This CAN be placed in the blue recycling bin.\" : \"This CANNOT be placed in the blue recycling bin.\"} Note: ${entry.note}`,\n    metadata: {\n      material_type: entry.material,\n      recyclable: entry.recyclable\n    }\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1040,
+        1056
+      ],
+      "id": "b7f5dae6-d80c-4d3e-abec-8fb93edcb3ab",
+      "name": "Code in JavaScript",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "clean_chat_id",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -544,
+        -240
+      ],
+      "id": "48672791-1cf6-4d5e-8f40-bfe757626599",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Loop Over Items').item.json.clean_chat_id }}",
+        "text": "={{ $('AI Agent2').item.json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        -240
+      ],
+      "id": "013eb393-51b5-4780-a5a7-814bbc2d9933",
+      "name": "Send a text message4",
+      "webhookId": "d68835bd-c0cd-40c7-934d-1f63b4eaac90",
+      "credentials": {
+        "telegramApi": {
+          "id": "GyyvadkmIsUDRuET",
+          "name": "Telegram account LQXX"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -320,
+        -240
+      ],
+      "id": "b10850fd-1f20-4a1f-beae-ac002e63d8c3",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "06a37ed5-8856-4f68-96d3-edd6127f0f68",
+              "name": "clean_chat_id",
+              "value": "={{ JSON.parse($json.chat_id).id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -768,
+        -240
+      ],
+      "id": "9aed5ffd-b517-4c11-987d-70fcef8f9e76",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y",
+          "mode": "list",
+          "cachedResultName": "GreenLens' Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dbWD4pg0-oKCP740siflMvrstiZWEoCpm-8fnD8nM5Y/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -992,
+        -240
+      ],
+      "id": "5a257def-c97c-461a-a355-60c554c68c36",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "LSYYPsQlAIuHbRzP",
+          "name": "Google Sheets - n8n module(LQXX)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Generate this week's recycling tip.",
+        "options": {
+          "systemMessage": "You are GreenLens, generating a short, engaging weekly recycling tip for \nSingapore users. Use the connected knowledge base to ground your tip in a \nreal NEA guideline — pick a different angle each time (e.g. a specific \nmaterial, a common mistake, an e-waste fact, a bulky-item rule). Keep it to \n1-2 sentences, friendly tone, start with an emoji. Do not repeat the same \nfact you've likely used before — vary the topic each time you're called."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -96,
+        -240
+      ],
+      "id": "83dd95b0-4611-4762-b8a7-354421b8e6ce",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        -16
+      ],
+      "id": "43a41bfd-becb-4469-9d57-168c92d4eee5",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "hYrAeeZQxDSG4aEO",
+          "name": "OpenRouter account (Leonard)"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Analyze an image1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze an image1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Send message and wait for response1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message3": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Simple Vector Store2",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Simple Vector Store2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "timezone": "Asia/Singapore",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1
+  },
+  "versionId": "74292236-d60a-4472-aed1-891ef70b17b5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d4ebadb9d95df0efff4e8784a1811953a63bd62f8d7a2a45b7c8f23992108d48"
+  },
+  "nodeGroups": [
+    {
+      "id": "963dba29-9f4f-4fad-be7e-32274e5fe23c",
+      "name": "Inserting and Chunking",
+      "nodeIds": [
+        "c89f3238-cfdf-45b8-a519-6c7be80dd294",
+        "a10870bb-ab56-4817-ba56-b2d05630d442",
+        "d2da88aa-1861-4f76-8e46-c05e761c0cb7",
+        "b7f5dae6-d80c-4d3e-abec-8fb93edcb3ab"
+      ]
+    }
+  ],
+  "id": "LlDRAFisgXamPLRY",
+  "tags": []
+}
