@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GreenLens Video Showcase</title>
+  <title>GreenLensBot</title>
   <link rel="stylesheet" href="style.css">
   <script defer src="app.js"></script>
 </head>
@@ -26,18 +26,17 @@
   <main>
     <section class="section video-section">
       <div class="container video-layout">
-        <div class="section-heading">
-          <p class="eyebrow">Video showcase</p>
-          <h1>Showcase your GreenLens video</h1>
-          <p>Drop your video file into the assets folder and it will play here as a proper showcase page.</p>
+        <div class="section-heading video-heading">
+          <p class="eyebrow">Product showcase</p>
+          <h1>GreenLensBot</h1>
+          <p>See the product in action!</p>
         </div>
 
         <div class="card video-card">
-          <video class="video-player" controls poster="assets/demo-screenshot.png">
-            <source src="assets/greenlens-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p class="caption">Replace assets/greenlens-video.mp4 with your own video file.</p>
+          <iframe class="video-player" src="https://www.youtube-nocookie.com/embed/pZVDysHLbOU" title="GreenLensBot video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="video-description">
+            <p>Every week in Singapore, 40% of what we put in our recycling bins never actually gets recycled - not because we don't care, but because we're never quite sure what goes where. That's where GreenLens comes in. Just snap a photo of anything you're about to throw out, send it to our Telegram bot, and get instant, NEA-verified guidance on exactly how to dispose of it - no searching, no guessing. Whether it's a greasy pizza box, a broken phone, or something you've genuinely never had to sort before, GreenLens tells you the right bin, the right prep, and why it matters. Because recycling right shouldn't be a mystery. Recycle right, not just recycle.</p>
+          </div>
         </div>
 
         <div class="video-actions">
