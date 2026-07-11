@@ -23,8 +23,12 @@ CONTENTS OF THIS ZIP
 
 TEAM
 ----
-Liew Qi Xuan Xanthus — Solution Lead
-Bryan Ee Yong Le — Data Lead
-Ge Youyou — Media Lead
-Klauzann Tan Jing Ting — Comms Lead
+Liew Qi Xuan Xanthus — Solution Lead,                     
+
+Bryan Ee Yong Le — Data Lead,                    
+
+Ge Youyou — Media Lead,                  
+
+Klauzann Tan Jing Ting — Comms Lead,               
+
 Lim Yi Ming — QA/Testing Lead
