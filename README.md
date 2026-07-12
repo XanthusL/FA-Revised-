@@ -4,7 +4,7 @@ C240 AI Essentials and Innovation
 LIVE LINKS
 ----------
 Website (source code + GitHub repo):
-https://xanthusl.github.io/FA-Revised-/Website/video.html
+https://xanthusl.github.io/FA-Revised-/Website/
 
 Live website (GitHub Pages):
 https://xanthusl.github.io/FA-Revised-/
