@@ -6,9 +6,6 @@ LIVE LINKS
 Website (source code + GitHub repo):
 https://xanthusl.github.io/FA-Revised-/Website/
 
-Live website (GitHub Pages):
-https://xanthusl.github.io/FA-Revised-/
-
 Promotional video:
 https://youtu.be/pZVDysHLbOU
 https://share.synthesia.io/896d8b42-ada8-49ad-a29c-fb1f90395494
